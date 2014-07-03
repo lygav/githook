@@ -147,7 +147,24 @@ Example
 Apache configuration
 ====================
 
-TODO
+It is strongly advised to use webhooks with http basic auth as github reccomends
+for this - use the following section as an example.
+Extended example available in examples/apache.conf
+
+Simple Example
+::
+	<Location />
+      	AuthType Basic
+      	AuthName 'nothing to see here'
+      	AuthBasicProvider file
+      	AuthUserFile /path/to/your/passwd/file
+      	Require user USERNAME
+	</Location>
+
+	<Location /githook>
+		Allow from all
+		ProxyPass http://localhost:5000/
+	</Location>
 
 Tests
 =====
